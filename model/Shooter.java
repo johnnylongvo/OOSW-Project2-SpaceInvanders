@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import model.Observer.Object;
 import model.Observer.Observer;
 
-public class Shooter extends GameElement implements Subject {
+public class Shooter extends GameElement implements Object {
 
     public static final int UNIT_MOVE = 10;
     public static final int MAX_BULLETS = 3;
@@ -112,7 +113,5 @@ public class Shooter extends GameElement implements Subject {
                 }
                 break;
         }
-
     }
-    
 }

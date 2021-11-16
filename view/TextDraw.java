@@ -20,14 +20,13 @@ public class TextDraw extends GameElement {
     @Override
     public void render(Graphics2D g2) {
         g2.setColor(color);
-        g2.setFont(new Font("Courier", Font.BOLD, size));
+        g2.setFont(new Font("Courier New", Font.BOLD, size));
         g2.drawString(text, x, y);
     }
 
     @Override
     public void animate() {
         // TODO Auto-generated method stub
-        
     }
 
     

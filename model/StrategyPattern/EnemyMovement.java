@@ -50,7 +50,7 @@ public class EnemyMovement implements EnemyMoveStrategy{
 
     @Override
     public boolean speedUp(int x) {
-        if(x >= 10){
+        if(x >= 100){
             return true;
         } else return false;
     }
