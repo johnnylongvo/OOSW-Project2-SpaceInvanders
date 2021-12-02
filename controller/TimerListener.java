@@ -60,7 +60,7 @@ public class TimerListener implements ActionListener {
         }
 
         if (frameCounter == BOMB_DROP_FREQ) {
-            gameBoard.getEnemyComposite().shoot();
+            gameBoard.getEnemyComposite().shield();
             frameCounter = 0;
         }
     }
@@ -72,13 +72,13 @@ public class TimerListener implements ActionListener {
         shooter.removeBulletsOutOfBounds();
         enemyComposite.removeBombsOutOfBounds();
         enemyComposite.processCollision(shooter);
-        if (enemyComposite.getMovement().atBottom()) {
+        if (enemyComposite.getMovement().bottomAxis()) {
             gameBoard.setGameOver(true);
             gameBoard.getCanvas().getGameElements().add(new TextDraw("You lose! Score: " + gameBoard.getScore(),100, 100, Color.red, 30));
             gameBoard.setHighScore(gameBoard.getScore());
-            gameBoard.getHighScoreDisplay().setText("" + gameBoard.getHighScore());
+            gameBoard.getDisplayHighScore().setText("" + gameBoard.getHighScore());
             gameBoard.setScore(0);
-            gameBoard.getScoreDisplay().setText("" + gameBoard.getScore());
+            gameBoard.getDisplayScore().setText("" + gameBoard.getScore());
         }
     }
 

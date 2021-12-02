@@ -1,9 +1,11 @@
-package model.Observer;
+package model.ObserverPattern;
 
 import model.Shooter;
 
 public interface Object {
+
     void addShooterListener(Observer o);
     void removeShooterListener(Observer o);
-    void notifyObservers(Shooter.Event event);
+    void notifyShooterObservers(Shooter.Event event);
+
 }

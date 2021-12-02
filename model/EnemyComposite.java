@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import model.Shooter.Event;
-import model.DesignPattern.WeaponComponent;
-import model.StrategyPattern.EnemyMovement;
+import model.DesignPattern.ShieldComponent;
+import model.ObserverPattern.StrategyPattern.EnemyMovement;
 import view.GameBoard;
 
-public class EnemyComposite extends GameElement implements WeaponComponent{
+public class EnemyComposite extends GameElement implements ShieldComponent{
 
     public static final int NROWS = 2;
     public static final int NCOLS = 10;
@@ -68,13 +68,13 @@ public class EnemyComposite extends GameElement implements WeaponComponent{
     @Override
     public void animate() {
         int dx;
-        if(movement.speedUp(hits)){
+        if(movement.speedLevel(hits)){
             dx = UNIT_MOVE + 2;
         }else{
             dx = UNIT_MOVE;
         }
         if(movingToRight){
-            if(movement.rightEnd() >= GameBoard.WIDTH){
+            if(movement.rightAxis() >= GameBoard.WIDTH){
                 dx = -dx;
                 for(var row: rows){
                     for(var e: row){
@@ -85,7 +85,7 @@ public class EnemyComposite extends GameElement implements WeaponComponent{
             }
         }else{
             dx = -dx;
-            if(movement.leftEnd() <= 0){
+            if(movement.leftAxis() <= 0){
                 dx += dx;
                 for(var row: rows){
                     for(var e: row){
@@ -96,7 +96,7 @@ public class EnemyComposite extends GameElement implements WeaponComponent{
             }
         }
 
-        // update x loc
+        // update x location
         for(var row: rows){
             for(var e: row){
                 e.x += dx;
@@ -114,7 +114,7 @@ public class EnemyComposite extends GameElement implements WeaponComponent{
     }
 
     @Override
-    public void shoot() {
+    public void shield() {
         for(var row: rows){
             for(var e: row){
                 if(random.nextFloat() < 0.1F){
@@ -143,7 +143,7 @@ public class EnemyComposite extends GameElement implements WeaponComponent{
             for(var enemy: row){
                 for(var bullet: shooter.getWeapons()){
                     if(enemy.collideWith(bullet)){
-                        shooter.notifyObservers(Event.HitEnemy);
+                        shooter.notifyShooterObservers(Event.HitEnemy);
                         removeBullets.add(bullet);
                         removeEnemies.add(enemy);
                         hits++;
@@ -174,7 +174,7 @@ public class EnemyComposite extends GameElement implements WeaponComponent{
         for(var b: bombs){
             for(var c: shooter.getComponents()){
                 if(c.collideWith(b)){
-                    shooter.notifyObservers(Event.BombHit);
+                    shooter.notifyShooterObservers(Event.BombHit);
                     removeBombs.add(b);
                     removeComponents.add(c);
                 }

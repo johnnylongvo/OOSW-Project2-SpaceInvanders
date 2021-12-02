@@ -27,7 +27,7 @@ public class TextDraw extends GameElement {
     @Override
     public void animate() {
         // TODO Auto-generated method stub
-    }
+}
 
     
 }

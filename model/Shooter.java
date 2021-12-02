@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import model.Observer.Object;
-import model.Observer.Observer;
+import model.ObserverPattern.Object;
+import model.ObserverPattern.Observer;
 
 public class Shooter extends GameElement implements Object {
 
-    public static final int UNIT_MOVE = 10;
-    public static final int MAX_BULLETS = 3;
+    public static final int UNIT_MOVE = 12;
+    public static final int MAX_BULLETS = 8;
 
     private ArrayList<Observer> observers = new ArrayList<>();
 
@@ -100,16 +100,16 @@ public class Shooter extends GameElement implements Object {
     }
 
     @Override
-    public void notifyObservers(Event event) {
+    public void notifyShooterObservers(Event event) {
         switch(event){
             case HitEnemy:
                 for(var o: observers){
-                    o.shooterHitEnemy();
+                    o.shooterEnemy();
                 }
                 break;
             case BombHit:
                 for(var o: observers){
-                    o.enemyHitShooter();
+                    o.hitEnemy();
                 }
                 break;
         }

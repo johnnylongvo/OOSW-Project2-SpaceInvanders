@@ -12,10 +12,11 @@ public class Enemy extends GameElement {
     @Override
     public void render(Graphics2D g2) {
         g2.setColor(color);
-        if (filled) 
+        if (filled) {
         g2.fillRect(x, y, width, height);
-        else
+        } else {
         g2.drawRect(x, y, width, height);
+        }
     }
 
     @Override

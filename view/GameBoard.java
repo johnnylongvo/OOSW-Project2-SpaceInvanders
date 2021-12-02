@@ -15,7 +15,7 @@ import controller.TimerListener;
 import model.EnemyComposite;
 import model.Shooter;
 import model.ShooterElement;
-import model.Observer.ObserverShooter;
+import model.ObserverPattern.ObserverShooter;
 
 public class GameBoard {
 
@@ -27,13 +27,16 @@ public class GameBoard {
     private JFrame window;
     private MyCanvas canvas;
     private Shooter shooter;
-    private EnemyComposite enemyComposite;
     private Timer timer;
     private TimerListener timerListener;
-    private JLabel scoreDisplay = new JLabel();
+    private EnemyComposite enemyComposite;
+
+    //NEW INPUTS 
+    private JLabel displayScore = new JLabel();
+    private JLabel displayHighScore = new JLabel();
     private int score = 0;
-    private JLabel highScoreDisplay = new JLabel();
     private int highScore = 0;
+    
     private boolean gameOver = true;
 
     public GameBoard(JFrame window){
@@ -41,21 +44,19 @@ public class GameBoard {
     }
 
     public void init(){
-
         Container cp = window.getContentPane();
 
         JPanel northPanel = new JPanel();
-        scoreDisplay.setText("");
+        displayScore.setText("");
         JLabel label = new JLabel("Score: ");
         northPanel.add(label);
-        scoreDisplay.setText("" + score);
-        northPanel.add(scoreDisplay);
-        JButton clearButton = new JButton("Clear score");
-        northPanel.add(clearButton);
-        JLabel hsLabel = new JLabel("High Score: ");
-        highScoreDisplay.setText("" + highScore);
-        northPanel.add(hsLabel);
-        northPanel.add(highScoreDisplay);
+        displayScore.setText("" + score);
+        northPanel.add(displayScore);
+
+        JLabel highScoreLabel = new JLabel("High Score: ");
+        displayHighScore.setText("" + highScore);
+        northPanel.add(highScoreLabel);
+        northPanel.add(displayHighScore);
         cp.add(BorderLayout.NORTH, northPanel);
 
         canvas = new MyCanvas(this, WIDTH, HEIGHT);
@@ -67,6 +68,7 @@ public class GameBoard {
 
         JButton startButton = new JButton("Start");
         JButton quitButton = new JButton("Quit");
+        JButton clearButton = new JButton("Clear Highscore");
         startButton.setFocusable(false);
         quitButton.setFocusable(false);
         clearButton.setFocusable(false);
@@ -74,12 +76,14 @@ public class GameBoard {
         JPanel southPanel = new JPanel();
         southPanel.add(startButton);
         southPanel.add(quitButton);
+        southPanel.add(clearButton);
         cp.add(BorderLayout.SOUTH, southPanel);
 
-        canvas.getGameElements().add(new TextDraw("Click <Start> to Play", 100, 100, Color.yellow, 30));
+        canvas.getGameElements().add(new TextDraw("Click <Start> to Play", 111, 111, Color.ORANGE, 32));
 
         timerListener = new TimerListener(this);
         timer = new Timer(DELAY, timerListener);
+        //timer = new Timer(DELAY, new TimerListener(this));
 
         startButton.addActionListener(event -> {
             setGameOver(false);
@@ -95,35 +99,15 @@ public class GameBoard {
 
         clearButton.addActionListener(event -> {
             highScore = 0;
-            highScoreDisplay.setText("" + highScore);
+            displayHighScore.setText("" + highScore);
         });
 
         quitButton.addActionListener(event -> System.exit(0));
 
     }
 
-    public int getHighScore() {
-        return highScore;
-    }
-
-    public void setHighScore(int highScore) {
-        this.highScore = highScore;
-    }
-
-    public JLabel getHighScoreDisplay() {
-        return highScoreDisplay;
-    }
-
     public JFrame getWindow() {
         return window;
-    }
-
-    public EnemyComposite getEnemyComposite() {
-        return enemyComposite;
-    }
-
-    public Shooter getShooter() {
-        return shooter;
     }
 
     public MyCanvas getCanvas() {
@@ -146,8 +130,8 @@ public class GameBoard {
         this.score = score;
     }
 
-    public JLabel getScoreDisplay() {
-        return scoreDisplay;
+    public JLabel getDisplayScore() {
+        return displayScore;
     }
 
     public boolean isGameOver() {
@@ -157,6 +141,25 @@ public class GameBoard {
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
-    
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+    }
+
+    public JLabel getDisplayHighScore() {
+        return displayHighScore;
+    }
+
+    public EnemyComposite getEnemyComposite() {
+        return enemyComposite;
+    }
+
+    public Shooter getShooter() {
+        return shooter;
+    }
 
 }

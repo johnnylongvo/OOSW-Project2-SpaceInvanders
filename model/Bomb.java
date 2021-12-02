@@ -9,7 +9,7 @@ public class Bomb extends GameElement {
     public static final int UNIT_MOVE = 5;
 
     public Bomb(int x, int y) {
-        super(x, y, Color.green, true, SIZE, SIZE*2);
+        super(x, y, Color.magenta, true, SIZE, SIZE*2);
     }
 
     @Override
