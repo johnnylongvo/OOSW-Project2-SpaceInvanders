@@ -27,7 +27,7 @@ public class ObserverShooter implements Observer {
 
         if (enemiesCount == 0) {
             gameBoard.setGameOver(true);
-            gameBoard.getCanvas().getGameElements().add(new TextDraw("Congratulations, You WIN! Score: " + score, 18, 150, Color.GREEN, 27));
+            gameBoard.getCanvas().getGameElements().add(new TextDraw("You WIN! Score: " + score, 18, 150, Color.GREEN, 27));
         }
     }
 
