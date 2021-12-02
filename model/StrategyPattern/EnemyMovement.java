@@ -1,4 +1,4 @@
-package model.ObserverPattern.StrategyPattern;
+package model.StrategyPattern;
 
 import model.EnemyComposite;
 import view.GameBoard;
@@ -39,7 +39,7 @@ public class EnemyMovement implements EnemyMovementStrategy{
     @Override
     public int leftAxis() {
         var rows = enemy.getRows();
-        int xAxis = 9000;
+        int xAxis = 900;
         for(var row: rows){
             if(row.size() == 0) continue;
             int x = row.get(0).x;

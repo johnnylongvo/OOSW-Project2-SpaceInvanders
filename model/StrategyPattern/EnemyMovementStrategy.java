@@ -1,4 +1,4 @@
-package model.ObserverPattern.StrategyPattern;
+package model.StrategyPattern;
 
 public interface EnemyMovementStrategy {
 

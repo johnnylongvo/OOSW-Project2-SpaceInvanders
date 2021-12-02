@@ -7,7 +7,7 @@ import java.util.Random;
 
 import model.Shooter.Event;
 import model.DesignPattern.ShieldComponent;
-import model.ObserverPattern.StrategyPattern.EnemyMovement;
+import model.StrategyPattern.EnemyMovement;
 import view.GameBoard;
 
 public class EnemyComposite extends GameElement implements ShieldComponent{
